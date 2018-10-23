@@ -594,6 +594,21 @@ function dismissInAppNotification(params) {
   newPlatformSpecific.dismissInAppNotification(params);
 }
 
+
+function showOverlay(params) {
+  params.navigationParams = {};
+  addNavigatorParams(params.navigationParams);
+
+  params.autoDismissTimerSec = params.autoDismissTimerSec || 5;
+  if (params.autoDismiss === false) delete params.autoDismissTimerSec;
+
+  newPlatformSpecific.showOverlay(params);
+}
+
+function removeOverlay(params) {
+  newPlatformSpecific.removeOverlay(params);
+}
+
 function addNavigatorParams(screen, navigator = null, idx = '') {
   screen.navigatorID = navigator ? navigator.navigatorID : _.uniqueId('navigatorID') + '_nav' + idx;
   screen.screenInstanceID = _.uniqueId('screenInstanceID');
@@ -766,11 +781,6 @@ function getRightButtons(screen) {
 function addNavigationStyleParams(screen) {
   const Screen = Navigation.getRegisteredScreen(screen.screen);
   screen.navigatorStyle = Object.assign({}, Screen.navigatorStyle, screen.navigatorStyle);
-}
-
-function showOverlay(params) {
-}
- function removeOverlay() {
 }
 
 function showSnackbar(params) {

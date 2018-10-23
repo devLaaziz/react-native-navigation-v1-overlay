@@ -446,6 +446,20 @@ public class NavigationCommandsHandler {
         });
     }
 
+    public static void showOverlay(final OverlayParams params) {
+        final NavigationActivity currentActivity = NavigationActivity.currentActivity;
+        if (currentActivity == null) {
+            return;
+        }
+
+        NavigationApplication.instance.runOnMainThread(new Runnable() {
+            @Override
+            public void run() {
+                currentActivity.showOverlay(params);
+            }
+        });
+    }
+
     public static void hideSlidingOverlay() {
         final NavigationActivity currentActivity = NavigationActivity.currentActivity;
         if (currentActivity == null) {
@@ -456,6 +470,20 @@ public class NavigationCommandsHandler {
             @Override
             public void run() {
                 currentActivity.hideSlidingOverlay();
+            }
+        });
+    }
+
+    public static void hideOverlay() {
+        final NavigationActivity currentActivity = NavigationActivity.currentActivity;
+        if (currentActivity == null) {
+            return;
+        }
+
+        NavigationApplication.instance.runOnMainThread(new Runnable() {
+            @Override
+            public void run() {
+                currentActivity.hideOverlay();
             }
         });
     }

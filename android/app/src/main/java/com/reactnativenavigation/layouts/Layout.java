@@ -8,6 +8,7 @@ import com.reactnativenavigation.params.ContextualMenuParams;
 import com.reactnativenavigation.params.FabParams;
 import com.reactnativenavigation.params.LightBoxParams;
 import com.reactnativenavigation.params.SlidingOverlayParams;
+import com.reactnativenavigation.params.OverlayParams;
 import com.reactnativenavigation.params.SnackbarParams;
 import com.reactnativenavigation.params.TitleBarButtonParams;
 import com.reactnativenavigation.params.TitleBarLeftButtonParams;
@@ -45,7 +46,11 @@ public interface Layout extends ScreenStackContainer {
 
     void showSlidingOverlay(SlidingOverlayParams params);
 
+    void showOverlay(OverlayParams params);
+
     void hideSlidingOverlay();
+
+    void hideOverlay();
 
     void onModalDismissed();
 

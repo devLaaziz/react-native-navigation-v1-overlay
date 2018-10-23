@@ -32,6 +32,7 @@ import com.reactnativenavigation.params.FabParams;
 import com.reactnativenavigation.params.LightBoxParams;
 import com.reactnativenavigation.params.ScreenParams;
 import com.reactnativenavigation.params.SlidingOverlayParams;
+import com.reactnativenavigation.params.OverlayParams;
 import com.reactnativenavigation.params.SnackbarParams;
 import com.reactnativenavigation.params.TitleBarButtonParams;
 import com.reactnativenavigation.params.TitleBarLeftButtonParams;
@@ -406,11 +407,27 @@ public class NavigationActivity extends AppCompatActivity implements DefaultHard
         }
     }
 
+    public void showOverlay(OverlayParams params) {
+        if (modalController.isShowing()) {
+            modalController.showOverlay(params);
+        } else {
+            layout.showOverlay(params);
+        }
+    }
+
     public void hideSlidingOverlay() {
         if (modalController.isShowing()) {
             modalController.hideSlidingOverlay();
         } else {
             layout.hideSlidingOverlay();
+        }
+    }
+
+    public void hideOverlay() {
+        if (modalController.isShowing()) {
+            modalController.hideOverlay();
+        } else {
+            layout.hideOverlay();
         }
     }
 

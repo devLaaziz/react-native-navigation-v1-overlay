@@ -26,6 +26,7 @@ import com.reactnativenavigation.params.LightBoxParams;
 import com.reactnativenavigation.params.ScreenParams;
 import com.reactnativenavigation.params.SideMenuParams;
 import com.reactnativenavigation.params.SlidingOverlayParams;
+import com.reactnativenavigation.params.OverlayParams;
 import com.reactnativenavigation.params.SnackbarParams;
 import com.reactnativenavigation.params.StyleParams;
 import com.reactnativenavigation.params.TitleBarButtonParams;
@@ -41,7 +42,9 @@ import com.reactnativenavigation.views.SideMenu;
 import com.reactnativenavigation.views.SideMenu.Side;
 import com.reactnativenavigation.views.SnackbarAndFabContainer;
 import com.reactnativenavigation.views.slidingOverlay.SlidingOverlay;
+import com.reactnativenavigation.views.overlay.Overlay;
 import com.reactnativenavigation.views.slidingOverlay.SlidingOverlaysQueue;
+import com.reactnativenavigation.views.overlay.OverlaysQueue;
 
 import java.util.List;
 
@@ -58,6 +61,7 @@ public class BottomTabsLayout extends BaseLayout implements AHBottomNavigation.O
     private final SideMenuParams leftSideMenuParams;
     private final SideMenuParams rightSideMenuParams;
     private final SlidingOverlaysQueue slidingOverlaysQueue = new SlidingOverlaysQueue();
+    private final OverlaysQueue overlaysQueue = new OverlaysQueue();
     private
     @Nullable
     SideMenu sideMenu;
@@ -317,6 +321,16 @@ public class BottomTabsLayout extends BaseLayout implements AHBottomNavigation.O
     }
 
     @Override
+    public void showOverlay(final OverlayParams params) {
+        overlaysQueue.add(new Overlay(this, params));
+    }
+
+    @Override
+    public void hideOverlay() {
+        overlaysQueue.remove();
+    }
+
+    @Override
     public void onModalDismissed() {
         getCurrentScreenStack().peek().setStyle();
         getCurrentScreenStack().peek().getScreenParams().timestamp = System.currentTimeMillis();
@@ -482,6 +496,7 @@ public class BottomTabsLayout extends BaseLayout implements AHBottomNavigation.O
             lightBox = null;
         }
         slidingOverlaysQueue.destroy();
+        overlaysQueue.destroy();
     }
 
     @Override

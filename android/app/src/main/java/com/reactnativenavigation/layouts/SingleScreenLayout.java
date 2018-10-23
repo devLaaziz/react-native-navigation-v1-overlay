@@ -17,6 +17,7 @@ import com.reactnativenavigation.params.LightBoxParams;
 import com.reactnativenavigation.params.ScreenParams;
 import com.reactnativenavigation.params.SideMenuParams;
 import com.reactnativenavigation.params.SlidingOverlayParams;
+import com.reactnativenavigation.params.OverlayParams;
 import com.reactnativenavigation.params.SnackbarParams;
 import com.reactnativenavigation.params.TitleBarButtonParams;
 import com.reactnativenavigation.params.TitleBarLeftButtonParams;
@@ -29,7 +30,9 @@ import com.reactnativenavigation.views.SideMenu;
 import com.reactnativenavigation.views.SideMenu.Side;
 import com.reactnativenavigation.views.SnackbarAndFabContainer;
 import com.reactnativenavigation.views.slidingOverlay.SlidingOverlay;
+import com.reactnativenavigation.views.overlay.Overlay;
 import com.reactnativenavigation.views.slidingOverlay.SlidingOverlaysQueue;
+import com.reactnativenavigation.views.overlay.OverlaysQueue;
 
 import java.util.List;
 
@@ -45,6 +48,7 @@ public class SingleScreenLayout extends BaseLayout {
     protected LeftButtonOnClickListener leftButtonOnClickListener;
     private @Nullable SideMenu sideMenu;
     private final SlidingOverlaysQueue slidingOverlaysQueue = new SlidingOverlaysQueue();
+    private final OverlaysQueue overlaysQueue = new OverlaysQueue();
     private LightBox lightBox;
 
     public SingleScreenLayout(AppCompatActivity activity, SideMenuParams leftSideMenuParams,
@@ -149,6 +153,7 @@ public class SingleScreenLayout extends BaseLayout {
             lightBox.destroy();
         }
         slidingOverlaysQueue.destroy();
+        overlaysQueue.destroy();
     }
 
     @Override
@@ -298,8 +303,18 @@ public class SingleScreenLayout extends BaseLayout {
     }
 
     @Override
+    public void showOverlay(final OverlayParams params) {
+        overlaysQueue.add(new Overlay(this, params));
+    }
+
+    @Override
     public void hideSlidingOverlay() {
         slidingOverlaysQueue.remove();
+    }
+
+    @Override
+    public void hideOverlay() {
+        overlaysQueue.remove();
     }
 
     @Override

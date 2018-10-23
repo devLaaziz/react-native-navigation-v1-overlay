@@ -329,6 +329,41 @@ var Controllers = {
     }
   },
 
+  Overlay: {
+    show: async function(params = {}) {
+      await RCCManager.showNotification(params);
+    },
+    dismiss: async function(params = {}) {
+      await RCCManager.dismissNotification(params);
+    },
+    AnimationPresets: {
+      default: {
+        animated: true,
+        duration: 0.5,
+        damping: 0.65,
+        type: 'slide-down',
+        fade: true
+      },
+      simple: {
+        animated: true,
+        duration: 0.3,
+        type: 'slide-down',
+        fade: true
+      },
+      swing: {
+        animated: true,
+        duration: 0.65,
+        damping: 0.6,
+        type: 'swing'
+      },
+      fade: {
+        animated: true,
+        duration: 0.3,
+        fade: true
+      }
+    }
+  },
+
   ScreenUtils: {
     getCurrentlyVisibleScreenId: async function() {
       return await RCCManager.getCurrentlyVisibleScreenId();

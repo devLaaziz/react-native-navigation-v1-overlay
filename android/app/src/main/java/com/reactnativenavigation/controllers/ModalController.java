@@ -13,6 +13,7 @@ import com.reactnativenavigation.params.ContextualMenuParams;
 import com.reactnativenavigation.params.FabParams;
 import com.reactnativenavigation.params.ScreenParams;
 import com.reactnativenavigation.params.SlidingOverlayParams;
+import com.reactnativenavigation.params.OverlayParams;
 import com.reactnativenavigation.params.TitleBarButtonParams;
 import com.reactnativenavigation.params.TitleBarLeftButtonParams;
 
@@ -167,6 +168,14 @@ class ModalController implements ScreenStackContainer, Modal.OnModalDismissedLis
 
     void hideSlidingOverlay() {
         stack.peek().hideSlidingOverlay();
+    }
+
+    void showOverlay(OverlayParams params) {
+        stack.peek().showOverlay(params);
+    }
+
+    void hideOverlay() {
+        stack.peek().hideOverlay();
     }
 
     Window getWindow() {

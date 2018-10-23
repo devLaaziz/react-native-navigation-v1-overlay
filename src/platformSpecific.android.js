@@ -62,6 +62,15 @@ function dismissLightBox() {
   NativeReactModule.dismissLightBox();
 }
 
+function showOverlay(params) {
+  savePassProps(params);
+  NativeReactModule.showOverlay(params);
+}
+
+function removeOverlay() {
+  NativeReactModule.hideOverlay();
+}
+
 async function dismissTopModal(params) {
   return await NativeReactModule.dismissTopModal(params);
 }

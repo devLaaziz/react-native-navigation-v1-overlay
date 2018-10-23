@@ -22,6 +22,7 @@ import com.reactnativenavigation.params.FabParams;
 import com.reactnativenavigation.params.Orientation;
 import com.reactnativenavigation.params.ScreenParams;
 import com.reactnativenavigation.params.SlidingOverlayParams;
+import com.reactnativenavigation.params.OverlayParams;
 import com.reactnativenavigation.params.StyleParams;
 import com.reactnativenavigation.params.TitleBarButtonParams;
 import com.reactnativenavigation.params.TitleBarLeftButtonParams;
@@ -82,6 +83,14 @@ class Modal extends Dialog implements DialogInterface.OnDismissListener, ScreenS
 
     void hideSlidingOverlay() {
         layout.hideSlidingOverlay();
+    }
+
+    void showOverlay(OverlayParams params) {
+        layout.showOverlay(params);
+    }
+
+    void hideOverlay() {
+        layout.hideOverlay();
     }
 
     @Override

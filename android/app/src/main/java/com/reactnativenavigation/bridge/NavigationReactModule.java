@@ -14,6 +14,7 @@ import com.reactnativenavigation.params.ContextualMenuParams;
 import com.reactnativenavigation.params.FabParams;
 import com.reactnativenavigation.params.LightBoxParams;
 import com.reactnativenavigation.params.SlidingOverlayParams;
+import com.reactnativenavigation.params.OverlayParams;
 import com.reactnativenavigation.params.SnackbarParams;
 import com.reactnativenavigation.params.TitleBarButtonParams;
 import com.reactnativenavigation.params.TitleBarLeftButtonParams;
@@ -22,6 +23,7 @@ import com.reactnativenavigation.params.parsers.FabParamsParser;
 import com.reactnativenavigation.params.parsers.LightBoxParamsParser;
 import com.reactnativenavigation.params.parsers.ScreenParamsParser;
 import com.reactnativenavigation.params.parsers.SlidingOverlayParamsParser;
+import com.reactnativenavigation.params.parsers.OverlayParamsParser;
 import com.reactnativenavigation.params.parsers.SnackbarParamsParser;
 import com.reactnativenavigation.params.parsers.TitleBarButtonParamsParser;
 import com.reactnativenavigation.params.parsers.TitleBarLeftButtonParamsParser;
@@ -232,6 +234,17 @@ public class NavigationReactModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void hideSlidingOverlay(final ReadableMap params) {
         NavigationCommandsHandler.hideSlidingOverlay();
+    }
+
+    @ReactMethod
+    public void showOverlay(final ReadableMap params) {
+        OverlayParams overlayParams = new OverlayParamsParser().parse(BundleConverter.toBundle(params));
+        NavigationCommandsHandler.showOverlay(overlayParams);
+    }
+
+    @ReactMethod
+    public void hideOverlay(final ReadableMap params) {
+        NavigationCommandsHandler.hideOverlay();
     }
 
     @ReactMethod
